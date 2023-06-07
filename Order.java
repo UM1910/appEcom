@@ -3,7 +3,9 @@ package com.design.challenge;
 import java.util.ArrayList;
 import java.util.List;
 
+
 class Order {
+    private int id;
     private int quantity;
     private double price;
     private double totalPrice;
@@ -28,9 +30,14 @@ class Order {
         }
     }
 
-    public void addItem() {
+    public void addItem(double price) {
         // Add item to the order
         // ...
+        // Update itemCount and itemCost properties
+        quantity++;
+        this.price = price;
+        totalPrice += price;
+
         // Notify observers after adding the item
         notifyObservers();
     }
@@ -38,7 +45,7 @@ class Order {
     public int getItemCount() {
         // Return the count of items in the order
         // ...
-        return 0;
+        return quantity;
     }
 
     public double getTotalPrice() {
@@ -57,9 +64,17 @@ class Order {
         this.shippingCost = shippingCost;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "Order [quantity=" + quantity + ", price=" + price + "]";
+        return "Order [id=" + id + ", quantity=" + quantity + ", price=" + price + "]";
     }
 
     private class Item {
